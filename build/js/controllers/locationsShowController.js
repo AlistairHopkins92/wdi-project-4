@@ -2,10 +2,10 @@ angular
 .module('dtg')
 .controller('locationsShowController', LocationsShowController);
 
-LocationsShowController.$inject = ["Location", "$stateParams", "$http"]
-function LocationsShowController(Location, $stateParams, $http){
+LocationsShowController.$inject = ["Location", "$stateParams", "$http", "$scope"]
+function LocationsShowController(Location, $stateParams, $http, $scope){
   var vm = this;
-  vm.match = match;
+  vm.eyes = eyes;
   
   console.log($stateParams.id);
 
@@ -14,9 +14,8 @@ function LocationsShowController(Location, $stateParams, $http){
     vm.users = response.users;
   })
   
-  function match(user_id){
-    $http.get(user_id).then(function match(res){
-      self.all.push(res.data);
-    });
+  function eyes(user_id){
+    console.log($scope.$parent.users.currentUser._id)
+    
   }
 }
