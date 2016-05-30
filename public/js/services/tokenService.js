@@ -1,5 +1,5 @@
 angular
-.module('logging')
+.module('dtg')
 .service('TokenService', TokenService)
 
 TokenService.$inject = ["$window", "jwtHelper"];

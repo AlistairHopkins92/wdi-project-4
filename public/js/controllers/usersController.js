@@ -1,5 +1,5 @@
 angular
-.module('logging')
+.module('dtg')
 .controller('UsersController', UsersController);
 
 UsersController.$inject = ['User', 'CurrentUser', '$state'];
@@ -17,8 +17,11 @@ function UsersController(User, CurrentUser, $state){
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
 
+
   function getUsers() {
-    User.query(function(data){
+    var oppositeSex = self.currentUser.local.sex === "Male" ? "Female" : "Male";
+
+    User.query({ sex: oppositeSex }, function(data){
       self.all = data.users;
     });
   }

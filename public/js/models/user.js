@@ -1,5 +1,5 @@
 angular
-.module('logging')
+.module('dtg')
 .factory('User', User);
 
 User.$inject = ['$resource', 'API'];

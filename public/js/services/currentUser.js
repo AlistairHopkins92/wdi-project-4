@@ -1,5 +1,5 @@
 angular
-  .module('logging')
+  .module('dtg')
   .service("CurrentUser", CurrentUser);
 
 CurrentUser.$inject = ["TokenService"];

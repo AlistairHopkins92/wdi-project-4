@@ -49402,12 +49402,17 @@ angular.module('ui.router.state')
   .filter('includedByState', $IncludedByStateFilter);
 })(window, window.angular);
 angular
-  .module('logging', ['angular-jwt', 'ngResource', 'ui.router'])
-  .constant('API', 'http://localhost:3000/api')
-  .config(MainRouter)
-  .config(function($httpProvider) {
-    $httpProvider.interceptors.push('authInterceptor');
-  })
+  .module('dtg', ['angular-jwt', 'ngResource', 'ui.router']);
+angular
+  .module('dtg')
+  .config(Interceptor);
+
+function Interceptor($httpProvider) {
+  $httpProvider.interceptors.push('authInterceptor');
+}
+angular
+  .module('dtg')
+  .config(MainRouter);
 
 MainRouter.$inject = ['$stateProvider', '$urlRouterProvider'];
 function MainRouter($stateProvider, $urlRouterProvider) {
@@ -49442,7 +49447,10 @@ function MainRouter($stateProvider, $urlRouterProvider) {
 }
 
 angular
-.module('logging')
+  .module('dtg')
+  .constant('API', 'http://localhost:3000/api');
+angular
+.module('dtg')
 .controller('UsersController', UsersController);
 
 UsersController.$inject = ['User', 'CurrentUser', '$state'];
@@ -49460,8 +49468,11 @@ function UsersController(User, CurrentUser, $state){
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
 
+
   function getUsers() {
-    User.query(function(data){
+    var oppositeSex = self.currentUser.local.sex === "Male" ? "Female" : "Male";
+
+    User.query({ sex: oppositeSex }, function(data){
       self.all = data.users;
     });
   }
@@ -49499,14 +49510,13 @@ function UsersController(User, CurrentUser, $state){
   }
 
   if (checkLoggedIn()) {
-    console.log(checkLoggedIn());
     self.getUsers();
   }
 
   return self;
 }
 angular
-.module('logging')
+.module('dtg')
 .factory('User', User);
 
 User.$inject = ['$resource', 'API'];
@@ -49532,7 +49542,7 @@ function User($resource, API){
 }
 
 angular
-.module('logging')
+.module('dtg')
 .factory('authInterceptor', AuthInterceptor);
 
 AuthInterceptor.$inject = ['API', 'TokenService'];
@@ -49557,7 +49567,7 @@ function AuthInterceptor(API, TokenService) {
   };
 }
 angular
-  .module('logging')
+  .module('dtg')
   .service("CurrentUser", CurrentUser);
 
 CurrentUser.$inject = ["TokenService"];
@@ -49577,7 +49587,7 @@ function CurrentUser(TokenService){
     }
 }
 angular
-.module('logging')
+.module('dtg')
 .service('TokenService', TokenService)
 
 TokenService.$inject = ["$window", "jwtHelper"];
