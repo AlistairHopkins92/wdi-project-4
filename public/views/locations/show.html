@@ -1,1 +1,15 @@
 <h2>Who is also attending?</h2>
+<ul class="media-list">
+  <li class="media" ng-repeat="user in locations.users">
+    <div class="media-left">
+      <a ui-sref="user({ id: user._id })">
+        <img class="media-object" ng-src="{{ user.local.image }}">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{ user.local.firstname }}</h4>
+      <p>{{ user.local.email }}</p>
+      <p>{{ user.local.sex }}</p>
+    </div>
+  </li>
+</ul>

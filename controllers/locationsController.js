@@ -42,6 +42,19 @@ function updateUsersLocation(req, res, location){
   })
 }
 
+function locationsShow(req, res){
+  User
+  .find({ "location": req.params.id })
+  .then(function(users){
+    return res.status(200).json({users: users});
+  })
+  .catch(function(err){
+    console.log(err);
+    return res.status(500).json({message: err});
+  })
+}
+
 module.exports = {
-  create: locationsCreate
+  create: locationsCreate,
+  show: locationsShow
 }

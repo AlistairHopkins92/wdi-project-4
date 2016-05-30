@@ -21,5 +21,7 @@ router.route('/users/:id')
 
 router.route('/locations')
   .post(locationsController.create);
+router.route('/locations/:id')
+  .get(locationsController.show);
 
 module.exports = router;
