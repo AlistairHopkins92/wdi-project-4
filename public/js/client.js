@@ -49957,6 +49957,7 @@ angular
 LocationsShowController.$inject = ["Location", "$stateParams"]
 function LocationsShowController(Location, $stateParams){
   var vm = this;
+  vm.eyes = eyes;
   
   console.log($stateParams.id);
 
@@ -49964,6 +49965,10 @@ function LocationsShowController(Location, $stateParams){
     console.log(response);
     vm.users = response.users;
   })
+  
+  function eyes(user_id){
+    console.log(user_id)
+  }
 }
 angular
 .module('dtg')

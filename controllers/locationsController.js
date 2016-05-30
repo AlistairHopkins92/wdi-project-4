@@ -28,7 +28,10 @@ function locationsCreate(req, res){
 
 function updateUsersLocation(req, res, location){
   User
-  .findByIdAndUpdate(req.user._id, { location: location._id }, {
+  .findByIdAndUpdate(req.user._id, { 
+    location: location._id,
+    matches: []
+  }, {
     new: true
   })
   .then(function(user){
@@ -44,7 +47,12 @@ function updateUsersLocation(req, res, location){
 
 function locationsShow(req, res){
   User
-  .find({ "location": req.params.id })
+  .find({ 
+    "location": req.params.id,
+    "_id": {
+      "$ne": req.user._id // Don't include the current_user
+    }
+  })
   .then(function(users){
     return res.status(200).json({users: users});
   })
