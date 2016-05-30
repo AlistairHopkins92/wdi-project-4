@@ -57,5 +57,6 @@ function UsersController(User, CurrentUser, $state){
     return !!self.currentUser;
   }
 
+
   return self;
 }

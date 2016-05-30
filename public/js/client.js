@@ -49934,6 +49934,11 @@ LocationsNewController.$inject = ["Location", "$state"]
 function LocationsNewController(Location, $state){
   var vm = this;
 
+  vm.autocompleteOptions = {
+    componentRestrictions: { country: 'uk' },
+    types: ['geocode']
+  }
+
   vm.findOrCreate = function(){
     console.log(vm.newLocation);
     
@@ -49954,10 +49959,10 @@ angular
 .module('dtg')
 .controller('locationsShowController', LocationsShowController);
 
-LocationsShowController.$inject = ["Location", "$stateParams"]
-function LocationsShowController(Location, $stateParams){
+LocationsShowController.$inject = ["Location", "$stateParams", "$http"]
+function LocationsShowController(Location, $stateParams, $http){
   var vm = this;
-  vm.eyes = eyes;
+  vm.match = match;
   
   console.log($stateParams.id);
 
@@ -49966,8 +49971,10 @@ function LocationsShowController(Location, $stateParams){
     vm.users = response.users;
   })
   
-  function eyes(user_id){
-    console.log(user_id)
+  function match(user_id){
+    $http.get(user_id).then(function match(res){
+      self.all.push(res.data);
+    });
   }
 }
 angular
@@ -50028,6 +50035,7 @@ function UsersController(User, CurrentUser, $state){
     self.currentUser = CurrentUser.getUser();
     return !!self.currentUser;
   }
+
 
   return self;
 }

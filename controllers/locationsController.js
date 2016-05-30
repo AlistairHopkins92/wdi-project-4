@@ -61,8 +61,24 @@ function locationsShow(req, res){
     return res.status(500).json({message: err});
   })
 }
+function match(req, res) {
+  var matcherId = req.currentUser._id
+  var matcheeId = req.user._id
+  console.log("user id", user)
+  console.log("currentUser id", currentUser)
+  User.findByIdAndUpdate({ currentUser: matcheeId }, {
+    $addToSet: { matches: matcherId }
+  }, {
+    new: true
+  }).populate("user").exec(function(err, user){
+    if (err) return res.status(500).json(err);
+    res.status(201).json({ user: user });
+
+  });
+}
 
 module.exports = {
   create: locationsCreate,
-  show: locationsShow
+  show: locationsShow,
+  match: match
 }

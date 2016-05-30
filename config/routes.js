@@ -24,4 +24,7 @@ router.route('/locations')
 router.route('/locations/:id')
   .get(locationsController.show);
 
+router.route('/users/:id/match')
+  .get(locationsController.match);
+
 module.exports = router;

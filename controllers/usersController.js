@@ -40,9 +40,11 @@ function usersDelete(req, res){
   });
 }
 
+  
+
 module.exports = {
   usersIndex:  usersIndex,
   usersShow:   usersShow,
   usersUpdate: usersUpdate,
-  usersDelete: usersDelete
+  usersDelete: usersDelete, 
 };

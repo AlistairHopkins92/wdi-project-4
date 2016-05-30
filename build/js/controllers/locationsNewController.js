@@ -6,6 +6,11 @@ LocationsNewController.$inject = ["Location", "$state"]
 function LocationsNewController(Location, $state){
   var vm = this;
 
+  vm.autocompleteOptions = {
+    componentRestrictions: { country: 'uk' },
+    types: ['geocode']
+  }
+
   vm.findOrCreate = function(){
     console.log(vm.newLocation);
     
