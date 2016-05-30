@@ -49419,23 +49419,29 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: "/",
-      templateUrl: "./js/views/home.html"
+      templateUrl: "../views/home.html"
     })
     .state('login', {
       url: "/login",
-      templateUrl: "./js/views/authentications/login.html"
+      templateUrl: "../views/authentications/login.html"
     })
     .state('register', {
       url: "/register",
-      templateUrl: "./js/views/authentications/register.html"
+      templateUrl: "../views/authentications/register.html"
     })
     .state('users', {
       url: "/users",
-      templateUrl: "./js/views/users/index.html"
+      templateUrl: "../views/users/index.html"
+    })
+    .state('locationsNew', {
+      url: "/locations/new",
+      templateUrl: "../views/locations/new.html",
+      controller: "locationsController",
+      controllerAs: "locations"
     })
     .state('user', {
       url: "/users/:id",
-      templateUrl: "./js/views/users/show.html",
+      templateUrl: "../views/users/show.html",
       controller: function($scope, $stateParams, User) {
         User.get({ id: $stateParams.id }, function(res){
           $scope.$parent.users.user = res.user;
@@ -49451,7 +49457,20 @@ angular
   .constant('API', 'http://localhost:3000/api');
 angular
 .module('dtg')
-.controller('UsersController', UsersController);
+.controller('locationsController', LocationsController);
+
+LocationsController.$inject = []
+function LocationsController(){
+  var vm = this;
+
+  vm.findOrCreate = function(){
+    console.log(vm.newLocation);
+    vm.newLocation = undefined;
+  }
+}
+angular
+.module('dtg')
+.controller('usersController', UsersController);
 
 UsersController.$inject = ['User', 'CurrentUser', '$state'];
 function UsersController(User, CurrentUser, $state){
@@ -49479,11 +49498,10 @@ function UsersController(User, CurrentUser, $state){
 
   function handleLogin(res) {
     var token = res.token ? res.token : null;
-    if (token) {
-      self.getUsers();
-      $state.go('home');
-    }
     self.currentUser = CurrentUser.getUser();
+    if (token) {
+      return $state.go('locationsNew');
+    }
   }
 
   function handleError(e) {
@@ -49507,10 +49525,6 @@ function UsersController(User, CurrentUser, $state){
   function checkLoggedIn() {
     self.currentUser = CurrentUser.getUser();
     return !!self.currentUser;
-  }
-
-  if (checkLoggedIn()) {
-    self.getUsers();
   }
 
   return self;

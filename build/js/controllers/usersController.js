@@ -1,6 +1,6 @@
 angular
 .module('dtg')
-.controller('UsersController', UsersController);
+.controller('usersController', UsersController);
 
 UsersController.$inject = ['User', 'CurrentUser', '$state'];
 function UsersController(User, CurrentUser, $state){
@@ -28,11 +28,10 @@ function UsersController(User, CurrentUser, $state){
 
   function handleLogin(res) {
     var token = res.token ? res.token : null;
-    if (token) {
-      self.getUsers();
-      $state.go('home');
-    }
     self.currentUser = CurrentUser.getUser();
+    if (token) {
+      return $state.go('locationsNew');
+    }
   }
 
   function handleError(e) {
@@ -56,10 +55,6 @@ function UsersController(User, CurrentUser, $state){
   function checkLoggedIn() {
     self.currentUser = CurrentUser.getUser();
     return !!self.currentUser;
-  }
-
-  if (checkLoggedIn()) {
-    self.getUsers();
   }
 
   return self;

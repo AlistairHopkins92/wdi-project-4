@@ -3,15 +3,15 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
       src: [
-        'public/**/*.js',
-        '!public/js/_bower.js'
+        'build/**/*.js',
+        '!build/js/_bower.js'
       ]
     },
     bower_concat: {
       all: {
         dest: {
-          'js': 'public/js/_bower.js',
-          'css': 'public/scss/_bower.scss'
+          'js': 'build/js/_bower.js',
+          'css': 'build/scss/_bower.scss'
         },
         mainFiles: {
           bootstrap: [
@@ -27,19 +27,19 @@ module.exports = function(grunt) {
     sass: {
       expanded: {
         options: { outputStyle: 'expanded' },
-        files: { 'public/css/client.css': 'public/scss/style.scss' }
+        files: { 'public/css/client.css': 'build/scss/style.scss' }
       },
       compressed: {
         options: { outputStyle: 'compressed' },
-        files: { 'public/css/client.min.css': 'public/scss/style.scss' }
+        files: { 'public/css/client.min.css': 'build/scss/style.scss' }
       }
     },
     concat: {
       dist: {
         src: [
-          'public/js/_bower.js',
-          'public/js/app.js',
-          'public/js/**/*.js',
+          'build/js/_bower.js',
+          'build/js/app.js',
+          'build/js/**/*.js',
           '!public/js/client.js',
           '!public/js/client.min.js'
         ],
@@ -55,12 +55,12 @@ module.exports = function(grunt) {
         options: { reload: true }
       },
       scss: {
-        files: ['public/scss/**/*.scss'],
+        files: ['build/scss/**/*.scss'],
         tasks: ['sass'],
         options: { livereload: true }
       },
       js: {
-        files: ['public/js/**/*.js'],
+        files: ['build/js/**/*.js'],
         tasks: ['concat', 'uglify'], // removed jshint
         options: { livereload: true }
       },
