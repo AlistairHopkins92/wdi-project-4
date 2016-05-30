@@ -56,7 +56,6 @@ function UsersController(User, CurrentUser, $state){
   }
 
   if (checkLoggedIn()) {
-    console.log(checkLoggedIn());
     self.getUsers();
   }
 

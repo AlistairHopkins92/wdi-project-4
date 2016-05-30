@@ -1,0 +1,26 @@
+{
+  "name": "wdi-project-4",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "AlistairHopkins92 <alistairhopkins92@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/AlistairHopkins92/wdi-project-4",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-resource": "^1.5.6",
+    "bootstrap": "^3.3.6",
+    "angular-messages": "^1.5.6",
+    "angular-jwt": "^0.0.9",
+    "angular-ui-router": "^0.3.0"
+  }
+}
