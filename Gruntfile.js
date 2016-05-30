@@ -17,6 +17,10 @@ module.exports = function(grunt) {
           bootstrap: [
             'dist/js/bootstrap.js',
             'dist/css/bootstrap.css'
+          ],
+          "angular-google-places-autocomplete": [
+            "/src/autocomplete.js",
+            "/src/autocomplete.css"
           ]
         },
         dependencies: {

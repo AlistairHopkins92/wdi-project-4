@@ -24,7 +24,13 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     .state('locationsNew', {
       url: "/locations/new",
       templateUrl: "../views/locations/new.html",
-      controller: "locationsController",
+      controller: "locationsNewController",
+      controllerAs: "locations"
+    })
+    .state('locationsShow', {
+      url: "/locations/:id",
+      templateUrl: "../views/locations/show.html",
+      controller: "locationsShowController",
       controllerAs: "locations"
     })
     .state('user', {

@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema({
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true }
   },
-  projects: [{ type: mongoose.Schema.ObjectId, ref: 'Project' }]
+  location: { type: mongoose.Schema.Types.ObjectId, ref: 'Location' }
 });
 
 // INCLUDE PASSWORD CONFIRMATION
