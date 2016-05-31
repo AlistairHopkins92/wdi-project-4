@@ -17,20 +17,32 @@ function usersShow(req, res){
   });
 }
 
+// function usersUpdate(req, res){
+//   User.findById(req.params.id,  function(err, user) {
+//     if (err) return res.status(500).json({message: "Something went wrong!"});
+//     if (!user) return res.status(404).json({message: 'No user found.'});
+
+//     if (req.body.email) user.local.email = req.body.name;
+//     if (req.body.password) user.local.password = req.body.password;
+
+//     user.save(function(err) {
+//      if (err) return res.status(500).json({message: "Something went wrong!"});
+
+//       res.status(201).json({message: 'User successfully updated.', user: user});
+//     });
+//   });
+// }
+
 function usersUpdate(req, res){
-  User.findById(req.params.id,  function(err, user) {
-    if (err) return res.status(500).json({message: "Something went wrong!"});
-    if (!user) return res.status(404).json({message: 'No user found.'});
+  console.log(req.body)
+  var id = req.body._id;
 
-    if (req.body.email) user.local.email = req.body.name;
-    if (req.body.password) user.local.password = req.body.password;
-
-    user.save(function(err) {
-     if (err) return res.status(500).json({message: "Something went wrong!"});
-
-      res.status(201).json({message: 'User successfully updated.', user: user});
-    });
-  });
+  User.findByIdAndUpdate({ _id: id }, req.body, { new: true}, function(err, user){
+    console.log(req.body.matches);
+    if (err) return res.status(500).send(err);
+    if (!user) return res.status(404).send(err);
+    res.status(200).send(user);
+  })
 }
 
 function usersDelete(req, res){
@@ -40,11 +52,21 @@ function usersDelete(req, res){
   });
 }
 
+function match(req, res) {
+  var matcherId = req.params.id
+  var matcheeId = req.params.matchid
+  console.log("user id", user)
+  console.log("currentUser id", currentUser)
+  User.findByIdAndUpdate({ _id: matcheeId }, {
+    $addToSet: { matches: matcherId }
+  });
+}
   
 
 module.exports = {
   usersIndex:  usersIndex,
   usersShow:   usersShow,
   usersUpdate: usersUpdate,
-  usersDelete: usersDelete, 
+  usersDelete: usersDelete,
+  match: match
 };

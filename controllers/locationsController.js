@@ -30,7 +30,6 @@ function updateUsersLocation(req, res, location){
   User
   .findByIdAndUpdate(req.user._id, { 
     location: location._id,
-    matches: []
   }, {
     new: true
   })
@@ -46,6 +45,7 @@ function updateUsersLocation(req, res, location){
 }
 
 function locationsShow(req, res){
+  console.log("req.user._id: " + req.user._id);
   User
   .find({ 
     "location": req.params.id,
@@ -61,23 +61,9 @@ function locationsShow(req, res){
     return res.status(500).json({message: err});
   })
 }
-// function match(req, res) {
-//   var matcherId = req.body.id
-//   var matcheeId = req.params.id
-//   console.log("user id", user)
-//   console.log("currentUser id", currentUser)
-//   User.findByIdAndUpdate({ _id: matcheeId }, {
-//     $addToSet: { matches: matcherId }
-//   }, {
-//     new: true
-//   }).populate("user").exec(function(err, user){
-//     if (err) return res.status(500).json(err);
-//     res.status(201).json({ user: user });
-//   });
-// }
+
 
 module.exports = {
   create: locationsCreate,
-  show: locationsShow,
-  match: match
+  show: locationsShow
 }

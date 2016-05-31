@@ -12,6 +12,7 @@ function User($resource, API){
     'query':     { method: 'GET', isArray: false},
     'remove':    { method: 'DELETE' },
     'delete':    { method: 'DELETE' },
+    'update':    { method: 'PATCH' },
     'register': {
       url: API +'/register',
       method: "POST"
@@ -19,6 +20,10 @@ function User($resource, API){
     'login':      {
       url: API + '/login',
       method: "POST"
+    },
+    'match':       {
+      url: API + '/users/:id/matches/matchid/save' ,
+      method: "GET"
     }
   }
   );
