@@ -4,6 +4,7 @@ var router  = express.Router();
 var usersController = require('../controllers/usersController');
 var authenticationsController = require('../controllers/authenticationsController');
 var locationsController = require('../controllers/locationsController');
+var connectionsController = require('../controllers/connectionsController');
 
 router.post('/login', authenticationsController.login);
 router.post('/register', authenticationsController.register);
@@ -24,7 +25,13 @@ router.route('/locations')
 router.route('/locations/:id')
   .get(locationsController.show);
 
-router.route('/users/:id/matches/:matchid/save')
-  .get(usersController.match);
+router.route('/connections')
+  .post(connectionsController.create);
+
+router.route('/matches')
+  .post(connectionsController.index);
+
+// router.route('/users/:id/matches/:matchid/save')
+//   .get(usersController.match);
 
 module.exports = router;

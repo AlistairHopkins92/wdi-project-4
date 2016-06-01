@@ -8051,3 +8051,8 @@ button.close {
 .media-object {
   max-width: 60px;
 }
+
+.container {
+  width: 100%;
+  text-align: center;
+}

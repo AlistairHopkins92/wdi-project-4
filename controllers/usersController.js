@@ -1,7 +1,6 @@
 var User   = require('../models/user');
 
 function usersIndex(req, res) {
-  console.log(req.query.sex)
   User.find({
     "local.sex": req.query.sex
   }, function(err, users){
