@@ -1,11 +1,11 @@
-<h2>Who is also attending?</h2>
+<div id='locationsShow' ng-if="locations.showAll">
+  <h2>Who is also attending?</h2>
 
-<div id="showButtons">
-  <button id="showAll" data-ng-click="locations.showAllButton()">Show All</button>
-  <button id="showMatches" data-ng-click="locations.showMatchesButton()">Show Matches</button>
-</div>
+  <div id="showButtons">
+    <button class='togglerButtons' id="showAll" data-ng-click="locations.showAllButton()">Show All</button>
+    <button class='togglerButtons' id="showMatches" data-ng-click="locations.showMatchesButton()">Show Matches</button>
+  </div>
 
-<div ng-if="locations.showAll">
   <h1>All</h1>
   <ul class="media-list">
     <li class="media" ng-repeat="user in locations.users">
@@ -16,21 +16,17 @@
       </div>
       <div class="media-body" ng-init="locations.checkMatch(user)">
         <h4 class="media-heading">{{ user.local.firstname }}</h4>
-        <p>{{ user.local.email }}</p>
-        <p>{{ user.local.sex }}</p>
-        <button data-ng-click="locations.eyes(user)">Eyes</button>
+        <button id='eyesButton' data-ng-click="locations.eyes(user)">Eyes</i></button>
         <form ng-if="locations.eyedUp" class="eyes">wink</form>
       </div>
     </li>
   </ul>
 </div>
-<div ng-if=locations.showMatches>
+<div id='locationsShow' ng-if=locations.showMatches>
   <h1>Matches</h1>
   <ul class="media-list">
     <li class="media" ng-repeat="match in locations.matches track by $index">
-    {{match }}
       <div ng-if="match.sender._id !== users.currentUser._id">
-        <h2>Hello</h2>
         <div class="media-left">
           <a ui-sref="user({ id: match.sender._id })">
             <img class="media-object" ng-src="{{ match.sender.local.image }}">

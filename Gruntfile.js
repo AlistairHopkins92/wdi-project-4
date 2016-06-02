@@ -26,6 +26,9 @@ module.exports = function(grunt) {
             "/js/onsenui.js",
             "/css/onsenui.css",
             "/css/onsen-css-components.css"
+          ],
+          "font-awesome": [
+            "css/font-awesome.css"
           ]
         },
         dependencies: {
