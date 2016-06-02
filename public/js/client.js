@@ -49961,13 +49961,14 @@ angular
 
 LocationsShowController.$inject = ["Location", "$stateParams", "$http", "$scope", "User", "API"]
 function LocationsShowController(Location, $stateParams, $http, $scope, User, API){
+  
   var vm           = this;
   vm.eyes          = eyes;
   vm.selectedUser  = {};
   vm.currentUser   = $scope.$parent.users.currentUser;
   vm.eyedUp        = false;
   vm.matched       = false;
-  vm.checkMatch    = checkMatch;
+  // vm.checkMatch    = checkMatch;
   vm.selectedUsers = [];
   vm.showAll       = true
   vm.showMatches   = false
@@ -49975,11 +49976,7 @@ function LocationsShowController(Location, $stateParams, $http, $scope, User, AP
   vm.showMatchesButton = showMatchesButton;
   vm.matches = [];
 
-  console.log($stateParams.id);
-
   Location.get({ id: $stateParams.id }).$promise.then(function(response){
-    console.log("locations controller response: ");
-    console.log(response);
     vm.users = response.users;
   })
   
@@ -49992,22 +49989,16 @@ function LocationsShowController(Location, $stateParams, $http, $scope, User, AP
     vm.showAll       = false
     vm.showMatches   = true
     vm.matches = [];
-    $http.post(API + "/matches", { user: vm.currentUser })
+
+    $http.get(API + "/users/"+ vm.currentUser._id +"/matches")
       .then(function(response) {
-        var connections = response.data;
-        connections.forEach(function(connection) {
-          var match = (connection.sender === vm.currentUser._id) ? connection.receiver : connection.sender;
-          var connectedUser = vm.users.filter(function(user) { //chaos starts here
-            return user._id = match;
-          });
-          vm.matches.push(connectedUser); //chaos ends here
-        })
+        vm.matches = response.data;
       })
   }
 
   function eyes(selectedUser){
     vm.selectedUser = selectedUser;
-    vm.currentUser = $scope.$parent.users.currentUser;
+    vm.currentUser  = $scope.$parent.users.currentUser;
 
     var data = {
       sender: vm.currentUser,
@@ -50016,8 +50007,8 @@ function LocationsShowController(Location, $stateParams, $http, $scope, User, AP
 
     $http.post(API + "/connections", data)
       .then(function(response) {
-      console.log(response);
-    })
+        console.log(response);
+      })
 
 
     // vm.eyedUp = true
@@ -50038,20 +50029,20 @@ function LocationsShowController(Location, $stateParams, $http, $scope, User, AP
     // thisuser.user.matches.push(user.user._id);
   }
 
-  function checkMatch(selectedUser){
-    vm.selectedUser = selectedUser;
-    vm.currentUser = $scope.$parent.users.currentUser;
-    if ( (vm.selectedUser.matches.indexOf( vm.currentUser._id ) == 0) && (vm.currentUser.matches.indexOf( vm.selectedUser._id ) == 0) ){
-      vm.matched = true;
-      console.log('matched')
-      vm.selectedUsers.push(selectedUser);
-    }
-    else{
-      vm.matched = false;
-      console.log('not matched')
-    }
-    return vm.matched;
-  }
+  // function checkMatch(selectedUser){
+  //   vm.selectedUser = selectedUser;
+  //   vm.currentUser = $scope.$parent.users.currentUser;
+  //   if ( (vm.selectedUser.matches.indexOf( vm.currentUser._id ) == 0) && (vm.currentUser.matches.indexOf( vm.selectedUser._id ) == 0) ){
+  //     vm.matched = true;
+  //     console.log('matched')
+  //     vm.selectedUsers.push(selectedUser);
+  //   }
+  //   else{
+  //     vm.matched = false;
+  //     console.log('not matched')
+  //   }
+  //   return vm.matched;
+  // }
 
 }
 angular

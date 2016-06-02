@@ -28,8 +28,8 @@ router.route('/locations/:id')
 router.route('/connections')
   .post(connectionsController.create);
 
-router.route('/matches')
-  .post(connectionsController.index);
+router.route('/users/:id/matches')
+  .get(connectionsController.index);
 
 // router.route('/users/:id/matches/:matchid/save')
 //   .get(usersController.match);

@@ -1,11 +1,15 @@
+{{ users.currentUser.local.email }}
+
 <h2>Who is also attending?</h2>
 
 <div id="showButtons">
   <button id="showAll" data-ng-click="locations.showAllButton()">Show All</button>
   <button id="showMatches" data-ng-click="locations.showMatchesButton()">Show Matches</button>
 </div>
+
 <div ng-if="locations.showAll">
   <h1>All</h1>
+  <h2>Current User: {{ users.currentUser }}</h2>
   <ul class="media-list">
     <li class="media" ng-repeat="user in locations.users">
       <div class="media-left">
@@ -27,19 +31,34 @@
   <h1>Matches</h1>
   <ul class="media-list">
     <li class="media" ng-repeat="match in locations.matches track by $index">
-      {{ match.local.firstname }}
-      <!-- <div class="media-left">
-        <a ui-sref="user({ id: user._id })">
-          <img class="media-object" ng-src="{{ user.local.image }}">
-        </a>
+    {{match }}
+      <div ng-if="match.sender._id !== users.currentUser._id">
+        <h2>Hello</h2>
+        <div class="media-left">
+          <a ui-sref="user({ id: match.sender._id })">
+            <img class="media-object" ng-src="{{ match.sender.local.image }}">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{ match.sender.local.firstname }}</h4>
+          <p>{{ match.sender.local.email }}</p>
+          <p>{{ match.sender.local.sex }}</p>
+          <form ng-if="locations.eyedUp" class="eyes">wink</form>
+        </div>
       </div>
-      <div class="media-body" ng-init="locations.checkMatch(user)">
-        <h4 class="media-heading">{{ user.local.firstname }}</h4>
-        <p>{{ user.local.email }}</p>
-        <p>{{ user.local.sex }}</p>
-        <button data-ng-click="locations.eyes(user)">Eyes</button>
-        <form ng-if="locations.eyedUp" class="eyes">wink</form>
-      </div> -->
+      <div ng-if="match.receiver._id !== users.currentUser._id">
+        <div class="media-left">
+          <a ui-sref="user({ id: match.receiver._id })">
+            <img class="media-object" ng-src="{{ match.receiver.local.image }}">
+          </a>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{ match.receiver.local.firstname }}</h4>
+          <p>{{ match.receiver.local.email }}</p>
+          <p>{{ match.receiver.local.sex }}</p>
+          <form ng-if="locations.eyedUp" class="eyes">wink</form>
+        </div>
+      </div>
     </li>
   </ul>
 </div>

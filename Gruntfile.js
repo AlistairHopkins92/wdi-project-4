@@ -109,5 +109,5 @@ module.exports = function(grunt) {
 
   // 'jshint' - bit harsh at the moment.
   grunt.registerTask('default', ['bower_concat', 'sass:expanded', 'concat', 'replace:development', 'watch']);
-  grunt.registerTask('deploy', ['bower_concat', 'sass:compressed', 'concat', 'uglify', 'replace:production']);
+  grunt.registerTask('deploy', ['bower_concat', 'sass:compressed', 'concat', 'replace:production']);
 };
