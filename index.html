@@ -30,13 +30,13 @@
                 <a href="#" ui-sref="locationsNew">Change Location</a>
               </li>
               <li data-ng-hide="users.checkLoggedIn()">
-                <a ui-sref="login">Login</a>
+                <a ui-sref="login"><i class="fa fa-unlock-alt" aria-hidden="true"></i></a>
               </li>
               <li data-ng-hide="users.checkLoggedIn()">
                 <a ui-sref="register">Register</a>
               </li>
               <li data-ng-show="users.checkLoggedIn()">
-                <a ui-sref="home" data-ng-click="users.logout()">Logout</a>
+                <a ui-sref="home" data-ng-click="users.logout()"><i class="fa fa-lock" aria-hidden="true"></i></a>
               </li>
             </ul>
           </div>
