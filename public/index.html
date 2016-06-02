@@ -27,7 +27,8 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li data-ng-show="users.checkLoggedIn()">
-                <a href="#" ui-sref="locationsNew">Change Location</a>
+                <a href="#" ui-sref="locationsNew"><i class="fa fa-map-signs" aria-hidden="true"></i>
+</a>
               </li>
               <li data-ng-hide="users.checkLoggedIn()">
                 <a ui-sref="login"><i class="fa fa-unlock-alt" aria-hidden="true"></i></a>

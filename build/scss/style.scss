@@ -25,16 +25,15 @@ img {
   height: 960px;
   overflow: scroll;
   margin: 0 auto;
-  border: 30px solid #666;
   border-radius: 10px;
-    background-image: url('/images/Party.jpg');
-    background-size: cover;
+  background-image: url('/images/Party.jpg');
+  background-size: cover;
 }
 
 input, textarea {
-    background: rgba(255, 255, 255, 0.4);
-    height: 33px;
-    border: none;
+  background: rgba(255, 255, 255, 0.4);
+  height: 33px;
+  border: none;
 }
 
 input, textarea:focus {
@@ -42,7 +41,7 @@ input, textarea:focus {
 }
 
 #maindiv{
-color: #bb1919;
+  color: #bb1919;
 }
 
 
@@ -81,8 +80,8 @@ color: #bb1919;
 
 // home page
 #homePageTitleDiv {
-    padding-top: 240px;
-    text-align: center;
+  padding-top: 240px;
+  text-align: center;
 }
 
 // home page ends
