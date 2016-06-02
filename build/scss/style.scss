@@ -20,13 +20,30 @@ img {
   border-radius: 100px;
 }
 
+#bartop{
+  background-image: url('/images/bartop.jpg');
+  background-size: cover;
+}
+
 #mobilePhone{
   width: 640px;
   height: 960px;
   overflow: scroll;
   margin: 0 auto;
   background-image: url('/images/Party.jpg');
-  background-size: cover;
+  height: 100vh;
+  margin-top: 140px;
+}
+
+
+img#iphone {
+  position: absolute;
+  border: none;
+  border-radius: 0;
+  float: inherit;
+  height: initial !important;
+  width: initial !important;
+  transform: translate(-9.4%, -17.1%);
 }
 
 input, textarea {
@@ -74,6 +91,13 @@ input, textarea:focus {
   border-radius: 50px;
 }
 
+.togglerButtons{
+  background-color: #bb1919;
+  color: white;
+  line-height: 15px;
+  padding: 5px;
+  margin: 10px;
+}
 
 // end of buttons
 
@@ -95,13 +119,7 @@ input, textarea:focus {
   text-align: center;
 }
 
-.togglerButtons{
-  background-color: #bb1919;
-  color: white;
-  line-height: 15px;
-  padding: 5px;
-  margin: 10px;
-}
+
 // locations page ends
 
 //Chat stuff
@@ -171,6 +189,7 @@ input, textarea:focus {
 #chatInput {
   padding-top: 10px;
 }
+
 
 // End of chat stuff
 
