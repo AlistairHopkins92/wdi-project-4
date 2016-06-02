@@ -29,5 +29,6 @@ function ChatsShowController(socket, $stateParams, CurrentUser){
   socket.on("receive", function(data){
     console.log("received", data);
     vm.messages.push(data);
+    $('#textWindow').animate({scrollTop: $('#textWindow').height()}, 500);
   });
 }

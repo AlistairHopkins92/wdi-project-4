@@ -1,12 +1,19 @@
 <h2>Chat</h2>
 
-<form novalidate ng-submit="chatsShow.sendMessage()">
-  <input type="text" ng-model="chatsShow.message.text">
-  <input type="submit" value="Send">
-</form>
-
-<ul>
-  <li ng-repeat="message in chatsShow.messages">
+<ul id='chatWindow'>
+<div id='textWindow'>
+  <li class="chatLi" ng-repeat="message in chatsShow.messages">
+  <div class="bubble">
     <strong>{{ message.sender.local.username }}:</strong> {{ message.text }}
+  </div>
   </li>
+</div>
+<div id="bottomBar">
+  <form id="chatInput" novalidate ng-submit="chatsShow.sendMessage()">
+    <input id='chatBox' type="text" ng-model="chatsShow.message.text">
+    <input  id='chatButton' type="submit" value="Send">
+  </form>
+  </div>
+
 </ul>
+
