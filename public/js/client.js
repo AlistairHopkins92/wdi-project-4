@@ -49918,7 +49918,13 @@ function MainRouter($stateProvider, $urlRouterProvider) {
           $scope.$parent.users.user = res.user;
         });
       }
-    });
+    })
+    .state('chatsShow', {
+      url: "/chats/:id",
+      templateUrl: "../views/chats/show.html",
+      controller: "chatsShowController",
+      controllerAs: "chatsShow"
+    })
 
   $urlRouterProvider.otherwise("/");
 }
@@ -49926,6 +49932,39 @@ function MainRouter($stateProvider, $urlRouterProvider) {
 angular
   .module('dtg')
   .constant('API', 'http://localhost:3000/api');
+angular
+.module('dtg')
+.controller('chatsShowController', ChatsShowController);
+
+ChatsShowController.$inject = ["socket", "$stateParams", "CurrentUser"];
+function ChatsShowController(socket, $stateParams, CurrentUser){
+  var vm = this;
+  vm.currentUser = CurrentUser.getUser();
+  vm.messages    = []
+
+  socket.on("connect", function(){
+    console.log("connected");
+  })
+
+  // Send back to the server.
+  socket.emit("join", $stateParams.id);
+
+  vm.sendMessage = function(){
+    console.log("sent", vm.message);
+    vm.message.channel = $stateParams.id;
+    vm.message.sender  = vm.currentUser;
+
+    // Save to the DB
+
+    socket.emit("send", vm.message)
+    vm.message = {};
+  }
+
+  socket.on("receive", function(data){
+    console.log("received", data);
+    vm.messages.push(data);
+  });
+}
 angular
 .module('dtg')
 .controller('locationsNewController', LocationsNewController);
@@ -50201,6 +50240,38 @@ function CurrentUser(TokenService){
       self.user = null;
     }
 }
+angular
+  .module('dtg')
+  .factory('socket', SocketFactory)
+
+SocketFactory.$inject = ["$rootScope"];
+function SocketFactory($rootScope) {
+  var socket = io.connect();
+
+  return {
+    on: function (eventName, callback) {
+      socket.on(eventName, function () {  
+        var args = arguments;
+        $rootScope.$apply(function () {
+          callback.apply(socket, args);
+        });
+      });
+    },
+    emit: function (eventName, data, callback) {
+      socket.emit(eventName, data, function () {
+        var args = arguments;
+        $rootScope.$apply(function () {
+          if (callback) {
+            callback.apply(socket, args);
+          }
+        });
+      })
+    },
+    socket: function() {
+      return socket;
+    }
+  };
+};
 angular
 .module('dtg')
 .service('TokenService', TokenService)

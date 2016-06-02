@@ -21,6 +21,11 @@ module.exports = function(grunt) {
           "angular-google-places-autocomplete": [
             "/src/autocomplete.js",
             "/src/autocomplete.css"
+          ],
+          "OnsenUI": [
+            "/js/onsenui.js",
+            "/css/onsenui.css",
+            "/css/onsen-css-components.css"
           ]
         },
         dependencies: {

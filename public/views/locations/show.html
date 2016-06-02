@@ -1,5 +1,3 @@
-{{ users.currentUser.local.email }}
-
 <h2>Who is also attending?</h2>
 
 <div id="showButtons">
@@ -9,7 +7,6 @@
 
 <div ng-if="locations.showAll">
   <h1>All</h1>
-  <h2>Current User: {{ users.currentUser }}</h2>
   <ul class="media-list">
     <li class="media" ng-repeat="user in locations.users">
       <div class="media-left">
@@ -43,7 +40,8 @@
           <h4 class="media-heading">{{ match.sender.local.firstname }}</h4>
           <p>{{ match.sender.local.email }}</p>
           <p>{{ match.sender.local.sex }}</p>
-          <form ng-if="locations.eyedUp" class="eyes">wink</form>
+          <button class="eyes">wink</button>
+          <button class="eyes" ui-sref="chatsShow({ id: match._id })">Chat</button>
         </div>
       </div>
       <div ng-if="match.receiver._id !== users.currentUser._id">
@@ -56,7 +54,8 @@
           <h4 class="media-heading">{{ match.receiver.local.firstname }}</h4>
           <p>{{ match.receiver.local.email }}</p>
           <p>{{ match.receiver.local.sex }}</p>
-          <form ng-if="locations.eyedUp" class="eyes">wink</form>
+          <button class="eyes">wink</button>
+          <button class="eyes" ui-sref="chatsShow({ id: match._id })">Chat</button>
         </div>
       </div>
     </li>

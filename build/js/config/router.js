@@ -41,7 +41,13 @@ function MainRouter($stateProvider, $urlRouterProvider) {
           $scope.$parent.users.user = res.user;
         });
       }
-    });
+    })
+    .state('chatsShow', {
+      url: "/chats/:id",
+      templateUrl: "../views/chats/show.html",
+      controller: "chatsShowController",
+      controllerAs: "chatsShow"
+    })
 
   $urlRouterProvider.otherwise("/");
 }

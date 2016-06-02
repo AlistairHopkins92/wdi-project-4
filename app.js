@@ -11,6 +11,9 @@ var jwt            = require('jsonwebtoken');
 var expressJWT     = require('express-jwt');
 var app            = express();
 
+var server         = require("http").createServer(app);
+var io             = require("socket.io")(server);
+
 var config         = require('./config/config');
 var User           = require('./models/user');
 var secret         = require('./config/config').secret;
@@ -79,4 +82,18 @@ function assignUser(req, res, next) {
 var routes = require('./config/routes');
 app.use("/api", routes);
 
-app.listen(config.port);
+server.listen(config.port, function(){
+
+  io.on('connect', function(socket) {
+    socket.on("join", function(room) {
+      console.log("Joined", room);
+      socket.join(room);
+    })
+
+    socket.on("send", function(data){
+      console.log(data);
+      io.in(data.channel).emit("receive", data);
+    })
+  });
+
+});
