@@ -10923,8 +10923,16 @@ html {
   background: white;
 }
 
+.navbar-header {
+  position: relative;
+}
+
 .col-sm-12 {
   text-align: center;
+}
+
+main {
+  position: relative;
 }
 
 body {
@@ -10950,7 +10958,6 @@ img {
   overflow: scroll;
   margin: 0 auto;
   background-image: url("/images/Party.jpg");
-  height: 100vh;
   margin-top: 140px;
 }
 
