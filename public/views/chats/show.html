@@ -10,7 +10,7 @@
     </div>
     <div id="bottomBar">
       <form id="chatInput" novalidate ng-submit="chatsShow.sendMessage()">
-        <input id='chatBox' type="text" ng-model="chatsShow.message.text">
+        <input id='chatBox' type="text" autocomplete="off" ng-model="chatsShow.message.text">
         <input  id='chatButton' type="submit" value="Send">
       </form>
     </div>
