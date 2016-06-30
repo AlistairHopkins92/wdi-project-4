@@ -10938,6 +10938,7 @@ main {
 body {
   font-family: 'Open Sans', sans-serif;
   color: #bb1919;
+  font-size: 30px;
 }
 
 img {
@@ -10972,9 +10973,9 @@ img#iphone {
 }
 
 input, textarea {
-  background: rgba(255, 255, 255, 0.4);
   height: 33px;
   border: none;
+  border: solid 1px grey;
 }
 
 input, textarea:focus {
@@ -10985,10 +10986,16 @@ input, textarea:focus {
   color: #bb1919;
 }
 
+label {
+  font-size: 25px;
+}
+
 .btn-default {
   background-color: #bb1919;
   color: white;
   line-height: 15px;
+  padding: 20px;
+  margin: 14px;
 }
 
 .btn-default:hover {
@@ -11027,9 +11034,35 @@ input, textarea:focus {
   text-align: center;
 }
 
+#loginpage {
+  text-align: center;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  height: 860px;
+}
+
+#login {
+  padding-top: 170px;
+}
+
+#register {
+  padding-top: 70px;
+}
+
+#registerpage {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
 #locationDiv {
   padding-top: 240px;
   text-align: center;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  height: 860px;
 }
 
 #locationsShow {

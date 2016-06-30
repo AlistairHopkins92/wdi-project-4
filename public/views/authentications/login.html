@@ -1,5 +1,5 @@
-<section>
-  <h2>Login</h2>
+<section id="loginpage">
+  <h1>Login</h1>
   <form id="login" name="users.loginForm" ng-submit="users.login()" novalidate>
     <div class="alert alert-danger" role="alert" ng-show="(!!users.error && users.loginForm.$submitted)">{{ users.error }}</div>
 
@@ -16,7 +16,7 @@
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="text" class="form-control" id="password" name="password"  placeholder="Password" ng-model="users.user.password" required>
+      <input type="password" class="form-control" id="password" name="password"  placeholder="Password" ng-model="users.user.password" required>
     </div>
 
     <div class="alert alert-danger" role="alert" ng-messages="users.loginForm['password'].$error" ng-show="(users.loginForm.$submitted && users.loginForm['password'].$invalid)">

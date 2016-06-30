@@ -1,7 +1,7 @@
-<section>
-  <h2>Register</h2>
+<section id="registerpage">
+  <h1>Register</h1>
 
-  <form id="login" name="users.registerForm" ng-submit="users.register()" novalidate>
+  <form id="register" name="users.registerForm" ng-submit="users.register()" novalidate>
     <div class="alert alert-danger" role="alert" ng-show="(!!users.error && users.registerForm.$submitted)">{{ users.error }}</div>
 
     <div class="form-group">
