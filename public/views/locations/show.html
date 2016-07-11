@@ -9,13 +9,13 @@
   <h1>All</h1>
   <ul class="media-list">
     <li class="media" id="userli" ng-repeat="user in locations.users">
+    <h1 class="media-heading">{{ user.local.firstname }}</h1>
       <div class="media-left">
         <a ui-sref="user({ id: user._id })">
           <img id="userimage" class="media-object" ng-src="{{ user.local.image }}">
         </a>
       </div>
       <div id="userinterations" ng-init="locations.checkMatch(user)">
-        <h4 class="media-heading">{{ user.local.firstname }}</h4>
         <button id='eyesButton' data-ng-click="locations.eyes(user)">Eyes</button>
         <form ng-if="locations.eyedUp" class="eyes">wink</form>
       </div>
@@ -33,7 +33,7 @@
           </a>
         </div>
         <div class="media-body">
-          <h4 class="media-heading">{{ match.sender.local.firstname }}</h4>
+          <h1 class="media-heading">{{ match.sender.local.firstname }}</h1>
           <button class="eyes" ui-sref="chatsShow({ id: match._id })">Chat</button>
         </div>
       </div>
