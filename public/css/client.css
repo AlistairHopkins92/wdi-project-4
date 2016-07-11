@@ -11008,8 +11008,9 @@ label {
   background-color: #bb1919;
   color: white;
   line-height: 15px;
-  height: 40px;
-  width: 100px;
+  height: 60px;
+  width: 150px;
+  border-radius: 10px;
 }
 
 #chatButton {
@@ -11026,6 +11027,9 @@ label {
   line-height: 15px;
   padding: 5px;
   margin: 10px;
+  height: 60px;
+  width: 260px;
+  border-radius: 10px;
 }
 
 #homePageTitleDiv {
