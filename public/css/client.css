@@ -11014,12 +11014,11 @@ label {
 }
 
 #chatButton {
-  width: 75px;
+  width: 100px;
   background-color: #bb1919;
   color: white;
-  height: 50px;
+  height: 60px;
   border-radius: 10px;
-  font-size: 10px;
 }
 
 .togglerButtons {
@@ -11059,6 +11058,15 @@ label {
   padding: 20px;
   background: rgba(255, 255, 255, 0.4);
   border-radius: 10px;
+}
+
+#locationInputBox {
+  height: 60px;
+  padding: 5px;
+}
+
+#locationform {
+  padding-top: 50px;
 }
 
 #locationDiv {
@@ -11135,7 +11143,7 @@ label {
 }
 
 #chatWindow {
-  width: 575px;
+  width: 550px;
   height: 625px;
   border: 4px solid #bb1919;
   margin-top: 0 auto;
@@ -11145,7 +11153,8 @@ label {
 #chatBox {
   background: rgba(255, 255, 255, 0.9);
   width: 425px;
-  height: 100%;
+  height: 60px;
+  padding: 5px;
   border: 4px solid #bb1919;
 }
 

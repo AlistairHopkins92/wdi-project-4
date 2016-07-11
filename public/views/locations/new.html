@@ -1,9 +1,9 @@
 <div id="locationDiv">
   <div>
     <h2>So where will you be going tonight?</h2>
-    <form data-ng-submit="locations.findOrCreate()">
+    <form id='locationform' data-ng-submit="locations.findOrCreate()">
       <input id="locationInputBox" type="text" g-places-autocomplete options="locations.autocompleteOptions" data-ng-model="locations.newLocation" autocomplete="off">
-      <input type="submit" class="btn btn-default" value="Go">
+      <input type="submit" id='chatButton' value="Go">
     </form>
   </div>
 </div>
