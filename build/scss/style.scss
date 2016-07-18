@@ -192,8 +192,15 @@ label {
   text-align: center;
   background: rgba(255, 255, 255, 0.4);
   border-radius: 10px;
-  height: 760px;
+  height: 785px;
   padding-top: 20px;
+  margin-bottom: 100px;
+}
+
+#username {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 55px;
 }
 
 #userimage {
