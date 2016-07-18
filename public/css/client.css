@@ -10949,6 +10949,7 @@ img {
 }
 
 #bartop {
+  padding-top: 60px;
   background-image: url("/images/bartop.jpg");
   background-size: cover;
 }
