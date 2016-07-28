@@ -63,7 +63,7 @@ input, textarea {
   // background: rgba(255, 255, 255, 0.4);
   height: 33px;
   border: none;
-  border: solid 1px grey;
+  border: solid 1px #ccc;
 }
 
 input, textarea:focus {
@@ -89,7 +89,7 @@ label {
 
 .btn-default:hover{
   background-color: #bb1919;
-  color: grey;
+  color: #ccc;
   line-height: 15px;
 }
 
